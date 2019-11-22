@@ -30,7 +30,7 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 .withClient("client1")
                 .secret("{noop}client1")
                 .authorizedGrantTypes("authorization_code", "refresh_token")
-                .scopes("all");
+                .scopes("all").redirectUris("http://127.0.0.1:9200");
     }
 
     @Override

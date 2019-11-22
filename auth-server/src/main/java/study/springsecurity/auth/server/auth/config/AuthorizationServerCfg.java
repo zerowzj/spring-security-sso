@@ -25,14 +25,22 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
     @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+//        security.tokenKeyAccess("isAuthenticated()");
+        security.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()");
+    }
+
+    @Override
     public void configure(ClientDetailsServiceConfigurer client) throws Exception {
         client.inMemory()
                 .withClient("client1")
                 .secret("{noop}client1")
-                .authorizedGrantTypes("authorization_code", "refresh_token")
-                .scopes("all")
-//                .autoApprove(true)
-                .redirectUris("http://127.0.0.1:9200");
+                .authorizedGrantTypes("authorization_code", "refresh_token") //授权类型
+                .scopes("user_info") //授权范围
+                .autoApprove(true)
+                .redirectUris("http://127.0.0.1:9200/client/login") // 认证成功重定向URL
+                .accessTokenValiditySeconds(5); //超时时间
     }
 
     @Override
@@ -44,10 +52,6 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 .userDetailsService(userDetailsService);
     }
 
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("isAuthenticated()");
-    }
 
     @Bean
     public TokenStore jwtTokenStore() {

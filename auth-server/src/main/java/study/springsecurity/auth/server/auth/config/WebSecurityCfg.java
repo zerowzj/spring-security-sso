@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,18 +32,27 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
 //        http.formLogin()
 //                .and()
-//                .authorizeRequests()
+//                .authorizeRequests().antMatchers("/oauth/**").permitAll()
 //                .anyRequest()
 //                .authenticated();
 
-        http.authorizeRequests()
-                .antMatchers("/oauth/**","/login/**", "/logout").permitAll()
-                .anyRequest().authenticated()   // 其他地址的访问均需验证权限
+        http.requestMatchers()
+                .antMatchers("/login", "/oauth/authorize")
                 .and()
-                .formLogin()
-                .loginPage("/login")
+                .authorizeRequests()
+                .anyRequest().authenticated()
                 .and()
-                .logout().logoutSuccessUrl("/");
+                .formLogin().permitAll();
+
+//        http.authorizeRequests()
+//                .antMatchers("/oauth/**", "/login/**", "/logout")
+//                .permitAll()
+//                .anyRequest().authenticated()   // 其他地址的访问均需验证权限
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .and()
+//                .logout().logoutSuccessUrl("/");
     }
 
     /**

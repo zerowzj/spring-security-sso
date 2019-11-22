@@ -27,7 +27,9 @@ security:
       scop: all
       user-authorization-uri: http://127.0.0.1:9100/oauth/authorize
       access-token-uri: http://127.0.0.1:9100/oauth/token
-      registered-redirect-uri: http://127.0.0.1:9200
+      registered-redirect-uri:
+        - http://www.sohu.com
+        - http://127.0.0.1:9200
     resource:
       jwt:
         key-uri: http://127.0.0.1:9100/oauth/token_key

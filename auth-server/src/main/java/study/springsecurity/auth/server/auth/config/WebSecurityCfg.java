@@ -31,11 +31,20 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 //                .csrf()
 //                .disable();
 
-        http.formLogin()
+//        http.formLogin()
+//                .and()
+//                .authorizeRequests()
+//                .anyRequest()
+//                .authenticated();
+
+        http.authorizeRequests()
+                .antMatchers("/oauth/**","/login/**", "/logout").permitAll()
+                .anyRequest().authenticated()   // 其他地址的访问均需验证权限
                 .and()
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated();
+                .formLogin()
+                .loginPage("/login")
+                .and()
+                .logout().logoutSuccessUrl("/");
     }
 
     /**

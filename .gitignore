@@ -25,5 +25,7 @@ hs_err_pid*
 
 /auth-server/target
 /auth-server/.idea
-/sso-client/target
-/sso-client/.idea
+/sso-client1/target
+/sso-client1/.idea
+/sso-client2/target
+/sso-client2/.idea

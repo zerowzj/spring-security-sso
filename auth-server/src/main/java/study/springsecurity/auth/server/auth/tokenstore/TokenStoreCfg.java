@@ -15,7 +15,7 @@ public class TokenStoreCfg {
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
     @Bean
-    public TokenStore tokenStore() {
+    public TokenStore jwtTokenStore() {
         return new JwtTokenStore(jwtAccessTokenConverter);
     }
 

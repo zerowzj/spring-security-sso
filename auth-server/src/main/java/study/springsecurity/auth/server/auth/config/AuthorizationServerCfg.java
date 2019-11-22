@@ -18,8 +18,6 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserDetailsService userDetailsService;
-    @Autowired
-    private ClientDetailsService clientDetailsService;
 
     /**
      * 客户端配置

@@ -2,7 +2,7 @@ package study.springsecurity.auth.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import study.springcloud.oauth2.support.SpringBootCfg;
+import study.springsecurity.auth.server.support.SpringBootCfg;
 
 public class Startup {
 

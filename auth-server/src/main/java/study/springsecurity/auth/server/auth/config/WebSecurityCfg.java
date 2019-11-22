@@ -13,6 +13,22 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.formLogin()                 //表单登录
+                .loginPage("")           //设置登录跳转页面controller、也可以直接跳转页面
+                .loginProcessingUrl("/") //自定义登录页面的表单提交地址
+                .and()
+                .authorizeRequests()
+                .antMatchers()
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .csrf()
+                .disable();
+    }
+
     /**
      * 认证管理器
      */
@@ -39,7 +55,6 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     }
 
 
-
     /**
      * 定义用户名 密码和角色
      * 1.
@@ -52,18 +67,4 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
 //                .password("{noop}123")
 //                .authorities("USER");
 //    }
-
-    /**
-     * HttpSecurity中配置所有请求的安全验证
-     * 1.
-     * 2.
-     */
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().anyRequest()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**")
-                .permitAll();
-    }
 }

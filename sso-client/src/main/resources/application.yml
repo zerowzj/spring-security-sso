@@ -7,11 +7,11 @@ logging:
 #
 spring:
   application:
-    name: auth-server
+    name: sso-client
   thymeleaf:
     cache: false
     prefix: classpath:/templats
-    suffix: .jsp
+    suffix: .html
     mode: HTML5
     encoding: UTF-8
     servlet:
@@ -20,7 +20,14 @@ spring:
 
 security:
   oauth2:
-    client: clie
-    clientSecret:
-    user-authorization-uri:
-    access-token-uri
+    client-id: client1
+    client-secret: client1
+    user-authorization-uri: http://127.0.0.1:9100/oauth/authorize
+    access-token-uri: http://127.0.0.1:9100/oauth/token
+    clientAuthenticationScheme: form
+    scope: all
+    sso:
+      login-path: /login
+  resource:
+    jwt:
+      key-uri: http://127.0.0.1:9100/oauth/token_key

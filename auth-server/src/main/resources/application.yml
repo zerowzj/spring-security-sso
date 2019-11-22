@@ -11,7 +11,7 @@ spring:
   thymeleaf:
     cache: false
     prefix: classpath:/templats
-    suffix: .jsp
+    suffix: .html
     mode: HTML5
     encoding: UTF-8
     servlet:

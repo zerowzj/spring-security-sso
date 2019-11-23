@@ -40,9 +40,11 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login", "/oauth/authorize")
                 .and()
                 .authorizeRequests()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
-                .formLogin().permitAll();
+                .formLogin()
+                .permitAll();
 
 //        http.authorizeRequests()
 //                .antMatchers("/oauth/**", "/login/**", "/logout")

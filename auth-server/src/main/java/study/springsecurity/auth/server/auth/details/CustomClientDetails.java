@@ -10,25 +10,30 @@ import java.util.Set;
 
 public class CustomClientDetails implements ClientDetails {
 
+    /* 客户端ID */
     private String clientId = "client1";
-
+    /* 客户端密钥 */
     private String clientSecret = "{noop}client1";
-
-    private Set<String> scope = Sets.newHashSet("user_info");
-
+    /*  */
+    private Set<String> scopes = Sets.newHashSet("user_info");
+    /*  */
     private Set<String> authorizedGrantTypes = Sets.newHashSet("authorization_code", "refresh_token");
-
+    /*  */
     private Set<String> redirectUri = Sets.newHashSet("", "");
 
     private boolean isAutoApprove = false;
 
     public CustomClientDetails() {
-
     }
 
     @Override
     public String getClientId() {
         return this.clientId;
+    }
+
+    @Override
+    public String getClientSecret() {
+        return this.clientSecret;
     }
 
     @Override
@@ -42,18 +47,13 @@ public class CustomClientDetails implements ClientDetails {
     }
 
     @Override
-    public String getClientSecret() {
-        return this.clientSecret;
-    }
-
-    @Override
     public boolean isScoped() {
         return false;
     }
 
     @Override
     public Set<String> getScope() {
-        return this.scope;
+        return this.scopes;
     }
 
     @Override

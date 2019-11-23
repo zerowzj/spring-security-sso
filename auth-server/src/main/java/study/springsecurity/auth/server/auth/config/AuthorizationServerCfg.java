@@ -39,7 +39,7 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 .authorizedGrantTypes("authorization_code", "refresh_token") //授权类型
                 .scopes("user_info") //授权范围
                 .autoApprove(true)
-                .redirectUris("http://127.0.0.1:9200/client/login") // 认证成功重定向URL
+                .redirectUris("http://127.0.0.1:9200/client1/login", "http://127.0.0.1:9300/client2/login") // 认证成功重定向URL
                 .accessTokenValiditySeconds(5); //超时时间
     }
 

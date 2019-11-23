@@ -1,15 +1,15 @@
 #
 server:
-  port: 9200
+  port: 9300
   servlet:
-    context-path: /client1
+    context-path: /client2
 #
 logging:
   config: classpath:logback.xml
 #
 spring:
   application:
-    name: sso-client1
+    name: sso-client2
   thymeleaf:
     cache: false
     prefix: classpath:/templats

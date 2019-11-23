@@ -1,0 +1,21 @@
+#
+server:
+  port: 9400
+  servlet:
+    context-path: /index
+
+logging:
+  config: classpath:logback.xml
+#
+spring:
+  application:
+    name: sso-index
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templats
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    check-template: true

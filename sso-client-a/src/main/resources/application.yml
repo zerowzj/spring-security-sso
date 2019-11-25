@@ -1,15 +1,15 @@
 #
 server:
-  port: 9300
+  port: 9200
   servlet:
-    context-path: /clientb
+    context-path: /clienta
 #
 logging:
   config: classpath:logback.xml
-#
+
 spring:
   application:
-    name: sso-client-b
+    name: sso-client-a
   thymeleaf:
     cache: false
     prefix: classpath:/templats
@@ -20,6 +20,9 @@ spring:
       content-type: text/html
     check-template: true
 
+####################
+#（★）单点登录
+####################
 security:
   oauth2:
     client:

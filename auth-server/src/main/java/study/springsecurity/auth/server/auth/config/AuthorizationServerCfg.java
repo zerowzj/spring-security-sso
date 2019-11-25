@@ -27,6 +27,9 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
+    /**
+     * 认证服务器安全配置
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 //        security.tokenKeyAccess("isAuthenticated()");
@@ -34,6 +37,9 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 .checkTokenAccess("isAuthenticated()");
     }
 
+    /**
+     * 客户端配置
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer client) throws Exception {
 //        client.inMemory()
@@ -47,6 +53,9 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
         client.withClientDetails(clientDetailsService);
     }
 
+    /**
+     * 端点配置
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(jwtTokenStore())

@@ -14,12 +14,12 @@ public class CustomClientDetails implements ClientDetails {
     private String clientId = "client1";
     /* 客户端密钥 */
     private String clientSecret = "{noop}client1";
-    /*  */
+    /* 会话 */
     private Set<String> scopes = Sets.newHashSet("user_info");
-    /*  */
+    /* 授权类型 */
     private Set<String> authorizedGrantTypes = Sets.newHashSet("authorization_code", "refresh_token");
     /* 跳转uri */
-    private Set<String> redirectUri = Sets.newHashSet("", "");
+    private Set<String> redirectUri;
     /* 是否自动批准 */
     private boolean isAutoApprove = false;
 

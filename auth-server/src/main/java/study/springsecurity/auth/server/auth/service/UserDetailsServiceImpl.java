@@ -13,7 +13,7 @@ import study.springsecurity.auth.server.auth.details.CustomClientDetails;
 
 import java.util.Set;
 
-@Component
+//@Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override

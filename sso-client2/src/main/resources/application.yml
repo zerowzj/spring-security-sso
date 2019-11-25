@@ -2,7 +2,7 @@
 server:
   port: 9200
   servlet:
-    context-path: /clientb
+    context-path: /client2
 #
 logging:
   config: classpath:logback.xml

@@ -1,6 +1,6 @@
 #
 server:
-  port: 9200
+  port: 9100
   servlet:
     context-path: /clienta
 #
@@ -32,14 +32,14 @@ security:
         - authorization_code
         - refresh_token
       scop: user_info
-      user-authorization-uri: http://127.0.0.1:9100/auth/oauth/authorize
-      access-token-uri: http://127.0.0.1:9100/auth/oauth/token
+      user-authorization-uri: http://127.0.0.1:9000/auth/oauth/authorize
+      access-token-uri: http://127.0.0.1:9000/auth/oauth/token
 #      registered-redirect-uri:
 #        - http://127.0.0.1:9200/client
 #      use-current-uri: true
     resource:
       jwt:
-        key-uri: http://127.0.0.1:9100/auth/oauth/token_key
+        key-uri: http://127.0.0.1:9000/auth/oauth/token_key
         key-value: test
 #      token-info-uri: htt://www.sohu.com
 #    sso:

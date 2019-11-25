@@ -18,9 +18,9 @@ public class CustomClientDetails implements ClientDetails {
     private Set<String> scopes = Sets.newHashSet("user_info");
     /*  */
     private Set<String> authorizedGrantTypes = Sets.newHashSet("authorization_code", "refresh_token");
-    /*  */
+    /* 跳转uri */
     private Set<String> redirectUri = Sets.newHashSet("", "");
-
+    /* 是否自动批准 */
     private boolean isAutoApprove = false;
 
     public CustomClientDetails() {

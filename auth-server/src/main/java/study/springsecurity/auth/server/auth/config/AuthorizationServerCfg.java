@@ -19,9 +19,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    private ClientDetailsService clientDetailsService;
-    @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private ClientDetailsService clientDetailsService;
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired

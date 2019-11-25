@@ -20,10 +20,8 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
-    @Qualifier("clientDetailsService")
     private ClientDetailsService clientDetailsService;
     @Autowired
-    @Qualifier("userDetailsService")
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -36,15 +34,15 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer client) throws Exception {
-        client.inMemory()
-                .withClient("client1")
-                .secret("{noop}client1")
-                .authorizedGrantTypes("authorization_code", "refresh_token") //授权类型
-                .scopes("user_info") //授权范围
-                .autoApprove(true)
-                .redirectUris("http://127.0.0.1:9100/client1/login", "http://127.0.0.1:9200/client2/login") // 认证成功重定向URL
-                .accessTokenValiditySeconds(5); //超时时间
-//        client.withClientDetails(clientDetailsService);
+//        client.inMemory()
+//                .withClient("client1")
+//                .secret("{noop}client1")
+//                .authorizedGrantTypes("authorization_code", "refresh_token") //授权类型
+//                .scopes("user_info") //授权范围
+//                .autoApprove(true)
+//                .redirectUris("http://127.0.0.1:9100/client1/login", "http://127.0.0.1:9200/client2/login") // 认证成功重定向URL
+//                .accessTokenValiditySeconds(5); //超时时间
+        client.withClientDetails(clientDetailsService).build();
     }
 
     /**

@@ -2,7 +2,6 @@ package study.springsecurity.auth.server.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,7 +13,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter {
@@ -27,6 +25,9 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     @Autowired
     @Qualifier("userDetailsService")
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    TokenStore jwtTokenStore;
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
@@ -51,8 +52,8 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(jwtTokenStore())
-                .accessTokenConverter(jwtAccessTokenConverter())
+        endpoints.tokenStore(jwtTokenStore)
+                .accessTokenConverter(jwtAccessTokenConverter)
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
@@ -68,15 +69,15 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 .checkTokenAccess("isAuthenticated()");
     }
 
-    @Bean
-    public TokenStore jwtTokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter);
-    }
-
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("test");
-        return converter;
-    }
+//    @Bean
+//    public TokenStore jwtTokenStore() {
+//        return new JwtTokenStore(jwtAccessTokenConverter);
+//    }
+//
+//    @Bean
+//    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+//        converter.setSigningKey("test");
+//        return converter;
+//    }
 }

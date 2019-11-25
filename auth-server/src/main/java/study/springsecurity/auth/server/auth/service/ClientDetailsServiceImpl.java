@@ -6,7 +6,7 @@ import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.stereotype.Component;
 import study.springsecurity.auth.server.auth.details.CustomClientDetails;
 
-@Component("clientDetailsService")
+//@Component("clientDetailsService")
 public class ClientDetailsServiceImpl implements ClientDetailsService {
 
     @Override

@@ -1,6 +1,7 @@
 package study.springsecurity.auth.server.auth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -21,24 +22,16 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
+    @Qualifier("clientDetailsService")
     private ClientDetailsService clientDetailsService;
     @Autowired
+    @Qualifier("userDetailsService")
     private UserDetailsService userDetailsService;
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
     /**
-     * 认证服务器安全配置
-     */
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-//        security.tokenKeyAccess("isAuthenticated()");
-        security.tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
-    }
-
-    /**
-     * 客户端配置
+     * （★）客户端配置
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer client) throws Exception {
@@ -54,7 +47,7 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
     }
 
     /**
-     * 端点配置
+     * （★）端点配置
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -65,6 +58,15 @@ public class AuthorizationServerCfg extends AuthorizationServerConfigurerAdapter
                 .userDetailsService(userDetailsService);
     }
 
+    /**
+     * （★）认证服务器安全配置
+     */
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+//        security.tokenKeyAccess("isAuthenticated()");
+        security.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()");
+    }
 
     @Bean
     public TokenStore jwtTokenStore() {

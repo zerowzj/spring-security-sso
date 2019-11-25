@@ -19,7 +19,7 @@ public class CustomClientDetails implements ClientDetails {
     /* 授权类型 */
     private Set<String> authorizedGrantTypes = Sets.newHashSet("authorization_code", "refresh_token");
     /* 跳转uri */
-    private Set<String> redirectUri;
+    private Set<String> redirectUri  = Sets.newHashSet("http://127.0.0.1:9100/client1/login", "http://127.0.0.1:9200/client2/login");
     /* 是否自动批准 */
     private boolean isAutoApprove = false;
 
@@ -73,12 +73,12 @@ public class CustomClientDetails implements ClientDetails {
 
     @Override
     public Integer getAccessTokenValiditySeconds() {
-        return null;
+        return 30;
     }
 
     @Override
     public Integer getRefreshTokenValiditySeconds() {
-        return null;
+        return 30;
     }
 
     @Override

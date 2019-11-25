@@ -1,23 +1,21 @@
 package study.springsecurity.auth.server.auth.service;
 
-import com.google.common.collect.Sets;
-import com.sun.applet2.preloader.event.UserDeclinedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.oauth2.provider.ClientDetails;
-import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.stereotype.Component;
-import study.springsecurity.auth.server.auth.details.CustomClientDetails;
+import study.springsecurity.auth.server.auth.details.CustomUserDetails;
 
-import java.util.Set;
-
-//@Component
+@Component("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        UserDetails userDetails = new CustomUserDetails("wzj", "123");
+        return userDetails;
     }
 }

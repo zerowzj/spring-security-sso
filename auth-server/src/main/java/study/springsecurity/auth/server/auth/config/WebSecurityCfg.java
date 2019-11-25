@@ -70,17 +70,17 @@ public class WebSecurityCfg extends WebSecurityConfigurerAdapter {
     /**
      * 用户信息服务
      */
-    @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withUsername("wzj")
-                .password("{noop}123")
-                .roles("USER")
-                .build();
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(userDetails);
-        return manager;
-    }
+//    @Bean
+//    @Override
+//    protected UserDetailsService userDetailsService() {
+//        UserDetails userDetails = User.withUsername("wzj")
+//                .password("{noop}123")
+//                .roles("USER")
+//                .build();
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        manager.createUser(userDetails);
+//        return manager;
+//    }
 
 
     /**
